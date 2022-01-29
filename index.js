@@ -3,12 +3,14 @@ for (var i = 0; i < drumNumber; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function() {
         var buttonInner = this.innerHTML
         sound(buttonInner);
+        changeButton(buttonInner);
 
     })
 }
 
 document.addEventListener("keypress", function(event) {
     sound(event.key)
+    changeButton(event.key);
 })
 
 function sound(key) {
@@ -44,4 +46,10 @@ function sound(key) {
         default:
             console.log("error")
     }
+}
+
+function changeButton(key) {
+    var btnChange = document.querySelector('.' + key);
+    btnChange.classList.add("pressed");
+    setTimeout(function() { btnChange.classList.remove("pressed") }, 100)
 }
